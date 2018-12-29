@@ -41,19 +41,19 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
         $this->version = '1.0.0';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
-        $this->controllers = array('CarrierComparison');
+        $this->controllers = ['CarrierComparison'];
 
         $this->bootstrap = true;
         parent::__construct();
 
         $this->displayName = $this->trans(
             'Shipping Estimate',
-            array(),
+            [],
             'Modules.Carriercomparison.Admin'
         );
         $this->description = $this->trans(
             'Compares carrier choices before checkout.',
-            array(),
+            [],
             'Modules.Carriercomparison.Admin'
         );
     }
@@ -75,7 +75,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
                 $output .= $this->displayConfirmation(
                     $this->trans(
                         'Settings updated',
-                        array(),
+                        [],
                         'Admin.Global'
                     )
                 );
@@ -159,7 +159,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
 
     public function getWidgetVariables($hookName, array $configuration)
     {
-        $carrierInfo = array(
+        $carrierInfo = [
             'idCountry' => $this->getIdCountry(),
             'idState' => $this->getIdState(),
             'zipCode' => $this->getZipCode(),
@@ -167,10 +167,10 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
                 $configuration['cart']->id_carrier :
                 Configuration::get('PS_CARRIER_DEFAULT')
             ),
-            'txtFree' => $this->trans('Free', array(), 'Shop.Theme.Checkout'),
-        );
+            'txtFree' => $this->trans('Free', [], 'Shop.Theme.Checkout'),
+        ];
 
-        return array(
+        return [
             'countries' => Country::getCountries(
                 (int)$this->context->cookie->id_lang,
                 true
@@ -181,7 +181,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
             'currencyFormat' => $this->context->currency->format,
             'currencyBlank' => $this->context->currency->blank,
             'refreshMethod' => (bool)Configuration::get('SE_RERESH_METHOD'),
-        );
+        ];
     }
 
     public function renderWidget($hookName, array $configuration)
@@ -210,7 +210,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
     {
         $states = State::getStatesByIdCountry($idCountry);
 
-        return (sizeof($states) ? $states : array());
+        return (sizeof($states) ? $states : []);
     }
 
     /*
@@ -246,7 +246,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
             $this->context->customer->id
         );
 
-        return (sizeof($carriers) ? $carriers : array());
+        return (sizeof($carriers) ? $carriers : []);
     }
 
     /*
@@ -310,8 +310,8 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
     public function simulateSelection($carrierId, $idCountry, $idState)
     {
         $idCarrier = (int)Cart::desintifier($carrierId, '');
-        $cartData = array();
-        $rawCartData = array();
+        $cartData = [];
+        $rawCartData = [];
         if ($idState) {
             $idZone = State::getIdZone($idState);
         } else {
@@ -389,22 +389,22 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
 
     public function renderForm()
     {
-        $fields_form = array(
-            'form' => array(
-                'legend' => array(
+        $fields_form = [
+            'form' => [
+                'legend' => [
                     'title' => $this->trans(
                         'Settings',
-                        array(),
+                        [],
                         'Admin.Global'
                     ),
                     'icon' => 'icon-cogs',
-                ),
-                'input' => array(
-                    array(
+                ],
+                'input' => [
+                    [
                         'type' => 'select',
                         'label' => $this->trans(
                             'How to refresh the carrier list?',
-                            array(),
+                            [],
                             'Modules.Carriercomparison.Admin'
                         ),
                         'name' => 'SE_RERESH_METHOD',
@@ -412,41 +412,41 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
                         'desc' => $this->trans(
                             'This determines when the list of carriers' .
                             ' presented to the customer is updated.',
-                            array(),
+                            [],
                             'Modules.Carriercomparison.Admin'
                         ),
                         'default_value' => 1,
-                        'options' => array(
-                            'query' => array(
-                                array(
+                        'options' => [
+                            'query' => [
+                                [
                                     'id' => 1,
                                     'name' => $this->trans(
                                         'Automatically with each field change',
-                                        array(),
+                                        [],
                                         'Modules.Carriercomparison.Admin'
                                     )
-                                ),
-                                array(
+                                ],
+                                [
                                     'id' => 0,
                                     'name' =>
                                         $this->trans('When the customer ' .
                                             'clicks on the "Estimate Shipping' .
                                             ' Cost" button',
-                                            array(),
+                                            [],
                                             'Modules.Carriercomparison.Admin'
                                         )
-                                ),
-                            ),
+                                ],
+                            ],
                             'id' => 'id',
                             'name' => 'name',
-                        ),
-                    ),
-                ),
-                'submit' => array(
-                    'title' => $this->trans('Save', array(), 'Admin.Actions')
-                ),
-            ),
-        );
+                        ],
+                    ],
+                ],
+                'submit' => [
+                    'title' => $this->trans('Save', [], 'Admin.Actions')
+                ],
+            ],
+        ];
 
         $helper = new HelperForm();
         $helper->show_toolbar = false;
@@ -467,22 +467,22 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
             '&tab_module=' . $this->tab .
             '&module_name=' . $this->name;
         $helper->token = Tools::getAdminTokenLite('AdminModules');
-        $helper->tpl_vars = array(
+        $helper->tpl_vars = [
             'fields_value' => $this->getConfigFieldsValues(),
             'languages' => $this->context->controller->getLanguages(),
             'id_language' => $this->context->language->id,
-        );
+        ];
 
-        return $helper->generateForm(array($fields_form));
+        return $helper->generateForm([$fields_form]);
     }
 
     public function getConfigFieldsValues()
     {
-        return array(
+        return [
             'SE_RERESH_METHOD' => Tools::getValue(
                 'SE_RERESH_METHOD',
                 Configuration::get('SE_RERESH_METHOD')
             ),
-        );
+        ];
     }
 }
