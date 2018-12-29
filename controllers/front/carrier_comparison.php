@@ -23,7 +23,6 @@
  * @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-
 require_once(dirname(__FILE__) . '/../../../../config/config.inc.php');
 require_once(dirname(__FILE__) . '/../../../../init.php');
 require_once(dirname(__FILE__) . '/../../ps_carriercomparison.php');
