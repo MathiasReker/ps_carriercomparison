@@ -269,11 +269,11 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
         // Populate required attributes
         // Note: Some carrier needs the whole address
         // the '.' will do the job
-        $addrTemp->firstname = ".";
-        $addrTemp->lastname = ".";
-        $addrTemp->address1 = ".";
-        $addrTemp->city = ".";
-        $addrTemp->alias = "TEMPORARY_ADDRESS_TO_DELETE";
+        $addrTemp->firstname = '.';
+        $addrTemp->lastname = '.';
+        $addrTemp->address1 = '.';
+        $addrTemp->city = '.';
+        $addrTemp->alias = 'TEMPORARY_ADDRESS_TO_DELETE';
         $addrTemp->save();
 
         $cart = new Cart();
