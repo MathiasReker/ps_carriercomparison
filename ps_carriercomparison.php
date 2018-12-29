@@ -429,12 +429,12 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
                                 array(
                                     'id' => 0,
                                     'name' =>
-                                        $this->trans('When the customer ' .
-                                            'clicks on the "Estimate Shipping' .
-                                            ' Cost" button',
-                                            array(),
-                                            'Modules.Carriercomparison.Admin'
-                                        )
+                                    $this->trans('When the customer ' .
+                                        'clicks on the "Estimate Shipping' .
+                                        ' Cost" button',
+                                        array(),
+                                        'Modules.Carriercomparison.Admin'
+                                    )
                                 ),
                             ),
                             'id' => 'id',
