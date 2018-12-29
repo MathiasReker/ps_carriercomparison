@@ -424,7 +424,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
                                         'Automatically with each field change',
                                         array(),
                                         'Modules.Carriercomparison.Admin'
-                                    )
+                                    ),
                                 ),
                                 array(
                                     'id' => 0,
@@ -433,7 +433,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
                                         ' Cost" button',
                                         array(),
                                         'Modules.Carriercomparison.Admin'
-                                    )
+                                    ),
                                 ),
                             ),
                             'id' => 'id',
@@ -442,7 +442,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
                     ),
                 ),
                 'submit' => array(
-                    'title' => $this->trans('Save', array(), 'Admin.Actions')
+                    'title' => $this->trans('Save', array(), 'Admin.Actions'),
                 ),
             ),
         );
