@@ -365,7 +365,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
     }
 
     /**
-     * This module is shown on front office, in only some conditions
+     * This module is shown on front office, in only some conditions.
      * @return bool
      */
     private function isModuleAvailable()
