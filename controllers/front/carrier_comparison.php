@@ -43,13 +43,13 @@ class ps_carriercomparisoncarrier_comparisonModuleFrontController extends Module
 
         switch (Tools::getValue('method')) {
             case 'getStates':
-                if (!(int)Tools::getValue('id_country')) {
+                if (!(int) Tools::getValue('id_country')) {
                     exit;
                 }
                 die(
                     Tools::jsonEncode(
                         $carrierCompare->getStatesByIdCountry(
-                            (int)Tools::getValue('id_country')
+                            (int) Tools::getValue('id_country')
                         )
                     )
                 );
@@ -58,8 +58,8 @@ class ps_carriercomparisoncarrier_comparisonModuleFrontController extends Module
                 die(
                     Tools::jsonEncode(
                         $carrierCompare->getCarriersListByIdZone(
-                            (int)Tools::getValue('id_country'),
-                            (int)Tools::getValue('id_state', 0),
+                            (int) Tools::getValue('id_country'),
+                            (int) Tools::getValue('id_state', 0),
                             Tools::safeOutput(
                                 Tools::getValue('zipcode', 0)
                             )
@@ -69,9 +69,9 @@ class ps_carriercomparisoncarrier_comparisonModuleFrontController extends Module
                 break;
             case 'simulateSelection':
                 $cart_data = $carrierCompare->simulateSelection(
-                    (int)Tools::getValue('carrier_id'),
-                    (int)Tools::getValue('id_country'),
-                    (int)Tools::getValue('id_state')
+                    (int) Tools::getValue('carrier_id'),
+                    (int) Tools::getValue('id_country'),
+                    (int) Tools::getValue('id_state')
                 );
                 die(Tools::jsonEncode($cart_data));
                 break;

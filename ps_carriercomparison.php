@@ -71,7 +71,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
         if (Tools::isSubmit('setGlobalConfiguration')) {
             if (Configuration::updateValue(
                 'SE_RERESH_METHOD',
-                (int)Tools::getValue('SE_RERESH_METHOD'))) {
+                (int) Tools::getValue('SE_RERESH_METHOD'))) {
                 $output .= $this->displayConfirmation(
                     $this->trans(
                         'Settings updated',
@@ -103,21 +103,21 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
 
         if (isset($this->context->cookie->id_country)
             && 0 < $this->context->cookie->id_country) {
-            $idCountry = (int)$this->context->cookie->id_country;
+            $idCountry = (int) $this->context->cookie->id_country;
         }
         if (!isset($idCountry)) {
             $idCountry = (isset($this->context->customer->geoloc_id_country) ?
-                (int)$this->context->customer->geoloc_id_country :
-                (int)Configuration::get('PS_COUNTRY_DEFAULT'));
+                (int) $this->context->customer->geoloc_id_country :
+                (int) Configuration::get('PS_COUNTRY_DEFAULT'));
         }
         if (isset($this->context->customer->id)
             && $this->context->customer->id
             && isset($this->context->cart->id_address_delivery)
             && $this->context->cart->id_address_delivery) {
             $address = new Address(
-                (int)$this->context->cart->id_address_delivery
+                (int) $this->context->cart->id_address_delivery
             );
-            $idCountry = (int)$address->id_country;
+            $idCountry = (int) $address->id_country;
         }
 
         return $idCountry;
@@ -129,11 +129,11 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
 
         if (isset($this->context->cookie->id_state)
             && 0 < $this->context->cookie->id_state) {
-            $idState = (int)$this->context->cookie->id_state;
+            $idState = (int) $this->context->cookie->id_state;
         }
         if (!isset($idState)) {
             $idState = (isset($this->context->customer->geoloc_id_state) ?
-                (int)$this->context->customer->geoloc_id_state :
+                (int) $this->context->customer->geoloc_id_state :
                 0);
         }
 
@@ -172,7 +172,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
 
         return array(
             'countries' => Country::getCountries(
-                (int)$this->context->cookie->id_lang,
+                (int) $this->context->cookie->id_lang,
                 true
             ),
             'carrierComparisonInfo' => $carrierInfo,
@@ -180,7 +180,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
             'currencyRate' => $this->context->currency->conversion_rate,
             'currencyFormat' => $this->context->currency->format,
             'currencyBlank' => $this->context->currency->blank,
-            'refreshMethod' => (bool)Configuration::get('SE_RERESH_METHOD'),
+            'refreshMethod' => (bool) Configuration::get('SE_RERESH_METHOD'),
         );
     }
 
@@ -309,7 +309,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
 
     public function simulateSelection($carrierId, $idCountry, $idState)
     {
-        $idCarrier = (int)Cart::desintifier($carrierId, '');
+        $idCarrier = (int) Cart::desintifier($carrierId, '');
         $cartData = array();
         $rawCartData = array();
         if ($idState) {
@@ -319,29 +319,29 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
         }
 
         $rawCartData['shipping_total'] =
-            (float)$this->context->cart->getPackageShippingCost(
+            (float) $this->context->cart->getPackageShippingCost(
                 $idCarrier,
                 true,
                 null,
                 null,
                 $idZone);
         $rawCartData['order_total'] =
-            (float)$this->context->cart->getOrderTotal()
-            - (float)$this->context->cart->getTotalShippingCost();
+            (float) $this->context->cart->getOrderTotal()
+            - (float) $this->context->cart->getTotalShippingCost();
         $rawCartData['tax_total'] =
-            (float)$this->context->cart->getOrderTotal(
+            (float) $this->context->cart->getOrderTotal(
                 true,
                 Cart::ONLY_PRODUCTS
-            ) - (float)$this->context->cart->getOrderTotal(
+            ) - (float) $this->context->cart->getOrderTotal(
                 false,
                 Cart::ONLY_PRODUCTS
-            ) + (float)$this->context->cart->getPackageShippingCost(
+            ) + (float) $this->context->cart->getPackageShippingCost(
                 $idCarrier,
                 true,
                 new Country($idCountry),
                 $this->context->cart->getProducts(),
                 $idZone
-            ) - (float)$this->context->cart->getPackageShippingCost(
+            ) - (float) $this->context->cart->getPackageShippingCost(
                 $idCarrier,
                 false,
                 new Country($idCountry),
@@ -451,7 +451,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
         $helper = new HelperForm();
         $helper->show_toolbar = false;
         $helper->table =  $this->table;
-        $lang = new Language((int)Configuration::get('PS_LANG_DEFAULT'));
+        $lang = new Language((int) Configuration::get('PS_LANG_DEFAULT'));
         $helper->default_form_language = $lang->id;
         $helper->allow_employee_form_lang =
             Configuration::get('PS_BO_ALLOW_EMPLOYEE_FORM_LANG') ?
