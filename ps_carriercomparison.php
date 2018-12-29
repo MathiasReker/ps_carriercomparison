@@ -82,7 +82,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
             }
         }
 
-        return $output.$this->renderForm();
+        return $output . $this->renderForm();
     }
 
     public function hookHeader($params)
