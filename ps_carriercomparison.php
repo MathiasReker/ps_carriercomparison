@@ -450,7 +450,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
 
         $helper = new HelperForm();
         $helper->show_toolbar = false;
-        $helper->table =  $this->table;
+        $helper->table = $this->table;
         $lang = new Language((int)Configuration::get('PS_LANG_DEFAULT'));
         $helper->default_form_language = $lang->id;
         $helper->allow_employee_form_lang =
