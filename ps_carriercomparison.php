@@ -213,9 +213,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
         return (sizeof($states) ? $states : array());
     }
 
-    /*
-    ** Get carriers by country id, called by the ajax process
-    */
+    // Get carriers by country id, called by the ajax process
     public function getCarriersListByIdZone(
         $idCountry,
         $idState = 0,
@@ -249,9 +247,7 @@ class Ps_CarrierComparison extends Module implements WidgetInterface
         return (sizeof($carriers) ? $carriers : array());
     }
 
-    /*
-     * Get all carriers available for this zon
-     */
+    // Get all carriers available for this zon
     public static function getCarriersByCountry(
         $idCountry,
         $idState,
